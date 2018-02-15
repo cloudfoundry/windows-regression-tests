@@ -26,20 +26,20 @@ const (
 
 var (
 	appName     string
-	config      *watsConfig
+	config      *wartsConfig
 	environment *workflowhelpers.ReproducibleTestSuiteSetup
 )
 
-func TestCFWindows(t *testing.T) {
+func TestWindowsRegression(t *testing.T) {
 	RegisterFailHandler(Fail)
 
 	SetDefaultEventuallyTimeout(time.Minute)
 	SetDefaultEventuallyPollingInterval(time.Second)
 
 	var err error
-	config, err = loadWatsConfig()
+	config, err = loadWartsConfig()
 	if err != nil {
-		t.Fatalf("could not load WATS config: %s", err.Error())
+		t.Fatalf("could not load WARTS config: %s", err.Error())
 	}
 
 	environment = workflowhelpers.NewTestSuiteSetup(config)
@@ -70,7 +70,7 @@ func TestCFWindows(t *testing.T) {
 		Eventually(cf.Cf("delete", appName, "-f")).Should(gexec.Exit(0))
 	})
 
-	componentName := "CF Windows"
+	componentName := "Windows Regression"
 
 	rs := []Reporter{}
 

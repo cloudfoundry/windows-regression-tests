@@ -15,7 +15,7 @@ const (
 	CredhubNonAssistedMode = "non-assisted"
 )
 
-type watsConfig struct {
+type wartsConfig struct {
 	ApiEndpoint          string `json:"api"`
 	AdminUser            string `json:"admin_user"`
 	AdminPassword        string `json:"admin_password"`
@@ -28,22 +28,22 @@ type watsConfig struct {
 	Stack                string `json:"stack"`
 }
 
-func loadWatsConfig() (*watsConfig, error) {
+func loadWartsConfig() (*wartsConfig, error) {
 	configPath := os.Getenv("CONFIG")
 	if configPath == "" {
-		return &watsConfig{}, errors.New("Must set CONFIG to point to an integration config JSON file")
+		return &wartsConfig{}, errors.New("Must set CONFIG to point to an integration config JSON file")
 	}
 
-	return loadWatsConfigFromPath(configPath)
+	return loadWartsConfigFromPath(configPath)
 }
 
-func loadWatsConfigFromPath(configPath string) (*watsConfig, error) {
+func loadWartsConfigFromPath(configPath string) (*wartsConfig, error) {
 	configContents, err := ioutil.ReadFile(configPath)
 	if err != nil {
 		return nil, err
 	}
 
-	config := watsConfig{
+	config := wartsConfig{
 		ArtifactsDirectory: filepath.Join("..", "results"),
 		UseHttp:            true,
 	}
@@ -65,75 +65,75 @@ func loadWatsConfigFromPath(configPath string) (*watsConfig, error) {
 	return &config, nil
 }
 
-func (w *watsConfig) GetApiEndpoint() string {
+func (w *wartsConfig) GetApiEndpoint() string {
 	return w.ApiEndpoint
 }
 
-func (w *watsConfig) GetConfigurableTestPassword() string {
+func (w *wartsConfig) GetConfigurableTestPassword() string {
 	return ""
 }
 
-func (w *watsConfig) GetPersistentAppOrg() string {
+func (w *wartsConfig) GetPersistentAppOrg() string {
 	return ""
 }
 
-func (w *watsConfig) GetPersistentAppQuotaName() string {
+func (w *wartsConfig) GetPersistentAppQuotaName() string {
 	return ""
 }
 
-func (w *watsConfig) GetPersistentAppSpace() string {
+func (w *wartsConfig) GetPersistentAppSpace() string {
 	return ""
 }
 
-func (w *watsConfig) GetScaledTimeout(timeout time.Duration) time.Duration {
+func (w *wartsConfig) GetScaledTimeout(timeout time.Duration) time.Duration {
 	return timeout
 }
 
-func (w *watsConfig) GetAdminPassword() string {
+func (w *wartsConfig) GetAdminPassword() string {
 	return w.AdminPassword
 }
 
-func (w *watsConfig) GetExistingUser() string {
+func (w *wartsConfig) GetExistingUser() string {
 	return ""
 }
 
-func (w *watsConfig) GetExistingUserPassword() string {
+func (w *wartsConfig) GetExistingUserPassword() string {
 	return ""
 }
 
-func (w *watsConfig) GetShouldKeepUser() bool {
+func (w *wartsConfig) GetShouldKeepUser() bool {
 	return false
 }
 
-func (w *watsConfig) GetUseExistingUser() bool {
+func (w *wartsConfig) GetUseExistingUser() bool {
 	return false
 }
 
-func (w *watsConfig) GetAdminUser() string {
+func (w *wartsConfig) GetAdminUser() string {
 	return w.AdminUser
 }
 
-func (w *watsConfig) GetSkipSSLValidation() bool {
+func (w *wartsConfig) GetSkipSSLValidation() bool {
 	return w.SkipSSLValidation
 }
 
-func (w *watsConfig) GetNamePrefix() string {
-	return "WATS"
+func (w *wartsConfig) GetNamePrefix() string {
+	return "WARTS"
 }
 
-func (w *watsConfig) GetAppsDomain() string {
+func (w *wartsConfig) GetAppsDomain() string {
 	return w.AppsDomain
 }
 
-func (w *watsConfig) GetNumWindowsCells() int {
+func (w *wartsConfig) GetNumWindowsCells() int {
 	return w.NumWindowsCells
 }
 
-func (w *watsConfig) GetArtifactsDirectory() string {
+func (w *wartsConfig) GetArtifactsDirectory() string {
 	return w.ArtifactsDirectory
 }
 
-func (w *watsConfig) Protocol() string {
+func (w *wartsConfig) Protocol() string {
 	if w.UseHttp {
 		return "http://"
 	} else {
@@ -141,26 +141,26 @@ func (w *watsConfig) Protocol() string {
 	}
 }
 
-func (w *watsConfig) GetIsolationSegmentName() string {
+func (w *wartsConfig) GetIsolationSegmentName() string {
 	return w.IsolationSegmentName
 }
 
-func (w *watsConfig) GetStack() string {
+func (w *wartsConfig) GetStack() string {
 	return w.Stack
 }
 
-func (w *watsConfig) GetUseExistingOrganization() bool {
+func (w *wartsConfig) GetUseExistingOrganization() bool {
 	return false
 }
 
-func (w *watsConfig) GetExistingOrganization() string {
+func (w *wartsConfig) GetExistingOrganization() string {
 	return ""
 }
 
-func (w *watsConfig) GetUseExistingSpace() bool {
+func (w *wartsConfig) GetUseExistingSpace() bool {
 	return false
 }
 
-func (w *watsConfig) GetExistingSpace() string {
+func (w *wartsConfig) GetExistingSpace() string {
 	return ""
 }

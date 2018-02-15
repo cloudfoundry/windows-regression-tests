@@ -47,12 +47,12 @@ type destination struct {
 }
 
 func createSecurityGroup(allowedDestinations ...destination) string {
-	file, _ := ioutil.TempFile(os.TempDir(), "WATS-sg-rules")
+	file, _ := ioutil.TempFile(os.TempDir(), "WARTS-sg-rules")
 	defer os.Remove(file.Name())
 	Expect(json.NewEncoder(file).Encode(allowedDestinations)).To(Succeed())
 
 	rulesPath := file.Name()
-	securityGroupName := fmt.Sprintf("WATS-SG-%s", generator.PrefixedRandomName(config.GetNamePrefix(), "SECURITY-GROUP"))
+	securityGroupName := fmt.Sprintf("WARTS-SG-%s", generator.PrefixedRandomName(config.GetNamePrefix(), "SECURITY-GROUP"))
 
 	workflowhelpers.AsUser(environment.AdminUserContext(), DEFAULT_TIMEOUT, func() {
 		Expect(cf.Cf("create-security-group", securityGroupName, rulesPath).Wait(DEFAULT_TIMEOUT)).To(gexec.Exit(0))
