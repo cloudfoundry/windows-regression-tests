@@ -43,7 +43,7 @@ cat > integration_config.json <<EOF
   "num_windows_cells": 1,
   "skip_ssl_validation": true,
   "isolation_segment_name": "",
-  "stack": "windows2016"
+  "stack": "windows2012R2"
 }
 EOF
 export CONFIG=$PWD/integration_config.json
