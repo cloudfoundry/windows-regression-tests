@@ -25,7 +25,6 @@ var _ = Describe("Application environment", func() {
 			"GOPATH",
 			"NUMBER_OF_PROCESSORS",
 			"OS",
-			"PATHEXT",
 			"PROCESSOR_ARCHITECTURE",
 			"PROCESSOR_IDENTIFIER",
 			"PROCESSOR_LEVEL",
